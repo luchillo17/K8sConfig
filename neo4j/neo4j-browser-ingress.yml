@@ -1,0 +1,27 @@
+# Broken because of Neo4j driver bug with the url path being ignored: https://github.com/neo4j/neo4j-javascript-driver/issues/1091
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: neo4j-ingress-http
+  namespace: neo4j
+
+spec:
+  rules:
+    - host: neo4j.172.31.157.72.nip.io
+      http:
+        paths:
+          - path: "/browser"
+            pathType: "Prefix"
+            backend:
+              service:
+                name: neo4j-db-lb-neo4j
+                port:
+                  name: http
+          - path: "/"
+            pathType: "Prefix"
+            backend:
+              service:
+                name: neo4j-db-lb-neo4j
+                port:
+                  name: tcp-bolt

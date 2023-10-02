@@ -1,0 +1,5 @@
+resources:
+  - https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+  - k8s-dashboard-cluster-role-binding.yml
+  - k8s-dashboard-service-account.yml
+  - k8s-dashboard-ingress.yml
